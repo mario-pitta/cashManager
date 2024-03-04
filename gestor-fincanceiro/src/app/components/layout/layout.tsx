@@ -1,9 +1,7 @@
 import React from 'react';
 
 import './layout.css';
-import { Header } from './components/header';
-import { Footer } from './components/footer';
-import { Content } from './components';
+import { Content, Sidebar, Header, Footer } from './components';
 
 export interface layoutProps {
   prop?: string;
@@ -12,6 +10,7 @@ export interface layoutProps {
 export function Layout({prop = 'default value'}: layoutProps) {
   return <div className='layout'>
     <Header />
+    <Sidebar />
     <Content />
     <Footer />
   

@@ -7,5 +7,6 @@ export interface contentProps {
 }
 
 export function Content({prop = 'default value'}: contentProps) {
+  console.log('iniciando content')
   return <div className='content'>content {prop}</div>;
 }
