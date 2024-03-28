@@ -12,11 +12,13 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@core/*": ["./src/app/core/models/*"],
+      "@core/*": ["./src/app/core/*"],
+      "@models/*": ["./src/app/core/models/*"],
+      "@shared/*": ["./src/app/components/shared/*"],
       "@images/*": ["./public/assets/*"]
     }
   },
