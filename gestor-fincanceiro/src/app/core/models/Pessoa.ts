@@ -1,28 +1,27 @@
-export default  class Pessoa {
-  id: number;
+export default class Pessoa {
+  id?: number;
   nome: string;
   cpf: string;
   email: string;
   senha: string;
-  saldo: number;
-  foto?: string ;
+  saldo?: number;
+  foto?: string;
 
-
-  constructor(
-    id: number,
-    nome: string,
-    cpf: string,
-    email: string,
-    senha: string, 
-    saldo: number,
-    foto?: string , 
-  ) {
-    this.id = id;
-    this.nome = nome;
-    this.cpf = cpf;
-    this.email = email;
-    this.senha = senha;
-    this.saldo = saldo
-    this.foto = foto
+  constructor(obj: {
+    id?: number;
+    nome: string;
+    cpf: string;
+    email: string;
+    senha: string;
+    saldo?: number;
+    foto?: string;
+  }) {
+    this.id = obj.id;
+    this.nome = obj.nome;
+    this.cpf = obj.cpf;
+    this.email = obj.email;
+    this.senha = obj.senha;
+    this.saldo = obj.saldo;
+    this.foto = obj.foto;
   }
 }
