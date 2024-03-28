@@ -13,7 +13,7 @@ export interface headerProps {
 
 export function Header({ prop = "default value" }: headerProps) {
 
-  console.log("redering header")
+  //console.log("redering header")
   const [showSideBar, setShowSideBar] = useState(false);
   function toggleSideBar(show: boolean) {
     setShowSideBar(show);
@@ -26,8 +26,6 @@ export function Header({ prop = "default value" }: headerProps) {
   return (
     <Navbar expand="lg" className="header">
       <Navbar.Brand href="/" className="appTitle">Cash Manager</Navbar.Brand>
-      {/* <Navbar.Toggle onClick={() => toggleSideBar(!showSideBar)} />
-      {showSideBar ? <Sidebar /> : null} */}
       <FaPowerOff  className="shutdown-btn" size={24} color="white" onClick={() => handleLogoff()}></FaPowerOff>
     </Navbar>
   );

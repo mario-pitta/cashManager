@@ -34,7 +34,7 @@ const LoginForm = () => {
 
   const handleLogin = async (formData: FormEvent<HTMLFormElement>) => {
     formData.preventDefault();
-    console.log(formData.currentTarget);
+    //console.log(formData.currentTarget);
     setLoading(true);
     clearError();
     getForm();
@@ -63,7 +63,7 @@ const LoginForm = () => {
 
   const handleValid = () => {
     let valid = form.email && form.password ? true : false;
-    console.log(valid);
+    //console.log(valid);
     setValid(valid);
   };
 
@@ -78,7 +78,7 @@ const LoginForm = () => {
     
     let _form: any = {}
     _form[event.target.id] = event?.target.value;
-    console.log(form)
+    //console.log(form)
     setForm({
       ...form, 
       ... _form

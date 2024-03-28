@@ -9,7 +9,7 @@ export interface layoutProps {
 }
 
 export function Layout({ prop = "layout rendering" }: layoutProps) {
-  console.log(prop)
+  //console.log(prop)
   return (
     <div className="layout">
       <Header />

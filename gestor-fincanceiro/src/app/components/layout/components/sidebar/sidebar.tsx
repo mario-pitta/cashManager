@@ -17,7 +17,7 @@ export function Sidebar() {
   const checkUser = () => {
     setUser(auth.getUser())
     const avatar = document.getElementById("avatar");
-    // console.log(avatar, user.foto);
+    // //console.log(avatar, user.foto);
     if (user.foto && avatar) avatar.style.backgroundImage = user.foto;
   };
 

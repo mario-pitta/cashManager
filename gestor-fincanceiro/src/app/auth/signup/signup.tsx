@@ -52,7 +52,7 @@ const SignupForm = (props: SignupFormProp) => {
       .signup(new Pessoa({ ...(form as any) }))
       .then((r) => {
         // r= JSON.parse(r)
-        console.log("no then do component", r);
+        //console.log("no then do component", r);
 
         if (r.error) {
           setError({

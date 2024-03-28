@@ -45,7 +45,7 @@ export const AccountForm = (props?: AccountPageProps) => {
   }, []);
 
   function _setDays() {
-    console.log("setting days");
+    // //console.log("setting days");
      
     const _days: any[] = [];
 
@@ -57,14 +57,14 @@ export const AccountForm = (props?: AccountPageProps) => {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    console.log("form submitted: ", e);
+    // //console.log("form submitted: ", e);
     // throw new Error("Function not implemented.");
 
-    console.log(form);
+    // //console.log(form);
   }
 
   function handleChangeBank(e: React.ChangeEvent<HTMLSelectElement>): void {
-    console.log("bankChanged submitted: ", e);
+    // //console.log("bankChanged submitted: ", e);
     setForm({
       ...form,
       instituicao_financeira: {
@@ -77,7 +77,7 @@ export const AccountForm = (props?: AccountPageProps) => {
   function inputResolve(
     e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    console.log(e.key);
+    // //console.log(e.key);
     if (isNaN(Number(e.key)) && e.key !== "Backspace") {
       return;
     } else {
@@ -90,7 +90,7 @@ export const AccountForm = (props?: AccountPageProps) => {
         saldo: newSaldo as number,
       });
     }
-    console.log(form);
+    // //console.log(form);
   }
 
   function handleChangeAccountType(
@@ -107,7 +107,7 @@ export const AccountForm = (props?: AccountPageProps) => {
   }
 
   function handleChangeFormValues(e: React.FormEvent<HTMLFormElement>): void {
-    console.log(e.currentTarget.id)
+    // //console.log(e.currentTarget.id)
   }
 
   return (

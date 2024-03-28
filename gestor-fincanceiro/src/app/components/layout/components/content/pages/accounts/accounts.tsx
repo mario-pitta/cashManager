@@ -35,7 +35,6 @@ export function AccountsPage({
        
         if (res.data) {
           setAccounts(res.data)
-          console.log(accounts);
         };
       });
   }

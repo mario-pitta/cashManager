@@ -12,7 +12,7 @@ export default class AuthService {
       password: password,
     };
 
-    console.log(payload);
+    //console.log(payload);
     return await api("/auth/login", "POST", payload)
       .then((res) => res)
       .catch((err) => err);
