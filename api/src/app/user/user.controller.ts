@@ -9,15 +9,15 @@ import {
 	Body,
 } from "@nestjs/common";
 import { UserService } from "./user.service";
-import { Pessoa } from "src/core/models/Pessoa";
+import { IPessoa } from "src/core/models/Pessoa";
 
 @Controller("user")
 export class UserController {
 	constructor(private readonly userService: UserService) {}
 
 	@Post()
-	create(@Body() body: Pessoa) {
-		return this.userService.create(body);
+	async create(@Body() body: IPessoa) {
+		return await this.userService.create(body);
 	}
 
 	@Get()

@@ -10,9 +10,17 @@ import { AccountModule } from "./app/account/account.module";
 import { TransactionsModule } from "./app/transactions/transactions.module";
 
 import { DataBase } from "./core/database";
+import { AuthModule } from "./app/auth/auth.module";
+import { BanksModule } from "./app/banks/banks.module";
 
 @Module({
-	imports: [LabelsModule, TransactionsModule, AccountModule, UserModule],
+	imports: [
+		LabelsModule, 
+		TransactionsModule, 
+		BanksModule,
+		AccountModule, 
+		UserModule, 
+		AuthModule],
 	controllers: [AppController],
 	providers: [AppService, DataBase],
 })

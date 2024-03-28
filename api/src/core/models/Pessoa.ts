@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-export class Pessoa {
+export interface IPessoa {
 	id: number;
 	nome: string;
 	cpf: string;

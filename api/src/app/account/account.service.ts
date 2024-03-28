@@ -5,10 +5,9 @@ https://docs.nestjs.com/providers#services
 */
 
 import { Injectable } from "@nestjs/common";
-import { DataBase } from "src/core/database";
-import { Conta } from "src/core/models/Conta";
+import { DataBase } from "../../core/database";
+import { Conta } from "../../core/models/Conta";
 const tableName = "contas";
-
 
 @Injectable()
 export class AccountService extends DataBase {
@@ -52,7 +51,12 @@ export class AccountService extends DataBase {
 	async findAll() {
 		const { data, error, status } = await this.supabase
 			.from(tableName)
-			.select("*")
+			.select(
+				`*, 
+					tipo_conta(id, descricao), 
+					banco(id, descricao, logo_url)
+				`
+			)
 			.then((res) => res);
 		return { data, error, status };
 	}
@@ -74,7 +78,11 @@ export class AccountService extends DataBase {
 	async findById(id: number) {
 		const { data, error, status } = await this.supabase
 			.from(tableName)
-			.select("*")
+			.select(
+				`*, 
+					tipo_conta(id, descricao)
+				`
+			)
 			.eq("id", id)
 			.then((res) => res);
 		return { data, error, status };
@@ -96,11 +104,28 @@ export class AccountService extends DataBase {
 	 * @returns {Promise<{ data: any[] | null; error: PostgrestError | null; status: number; }>}
 	 */
 	async findByUserId(userId: number) {
+
+
+		console.log("async findByUserId")
 		const { data, error, status } = await this.supabase
 			.from(tableName)
-			.select("*")
+			.select(
+				`*, 
+				tipo_conta(
+					id, 
+					descricao
+				),
+				banco(
+					id, 
+					descricao,
+					logo_url
+				)
+
+				`
+			)
 			.eq("pessoa_id", userId)
 			.then((res) => res);
+
 		return { data, error, status };
 	}
 
@@ -120,7 +145,11 @@ export class AccountService extends DataBase {
 		console.log(filter);
 		const { data, error, status } = await this.supabase
 			.from(tableName)
-			.select("*")
+			.select(
+				`*, 
+			tipo_conta(id, descricao)
+		`,
+			)
 			.match({ ...filter })
 			.then((res) => {
 				console.log(res.error);
@@ -143,10 +172,22 @@ export class AccountService extends DataBase {
 	 * @returns {Promise<number | undefined>}
 	 */
 	async getAmountByUserId(id: number) {
-		const saldos = (await this.findByUserId(id)).data?.map(
-			(account: Conta) => account.saldo,
-		);
-		return saldos?.reduce((count: number, value: number) => count + value, 0);
+		const { data, error } = await this.findByUserId(id).then(r => r);
+
+		if (error) {
+			throw new Error("Error on get ammount from user: \n" + error.code + " " + error.message);
+		}
+
+
+		let saldo: number = 0;
+		if (data) {
+			for (const conta of data) {
+				saldo += conta.saldo;
+			}
+		}
+
+		console.log("terminou de contar o saldo")
+		return { data: saldo, error }
 	}
 
 	/**

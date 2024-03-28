@@ -3,9 +3,10 @@
 https://docs.nestjs.com/providers#services
 */
 
-import { Pessoa } from "src/core/models/Pessoa";
+import { IPessoa } from "src/core/models/Pessoa";
 import { Injectable } from "@nestjs/common";
 import { DataBase } from "src/core/database";
+
 const tableName = "pessoas";
 @Injectable()
 /**
@@ -14,7 +15,7 @@ const tableName = "pessoas";
  * defined in the `DataBase` class. This allows the `UserService` class to reuse functionality from the `DataBase` class
  * and also add its own specific methods and properties related to user service operations. Additionally, the `export`
  * keyword makes the `UserService` class available for use in other modules by exporting it from the current module.
- * 
+ *
  * @class
  * @name UserService
  * @extends DataBase
@@ -37,11 +38,13 @@ export class UserService extends DataBase {
 	 * @param {Pessoa} user
 	 * @returns {Promise<PostgrestResponseFailure | PostgrestResponseSuccess<null>>}
 	 */
-	async create(user: Pessoa) {
+	async create(user: IPessoa) {
 		const created = await this.supabase
 			.from(tableName)
 			.insert(user)
+			.select("*")
 			.then((res) => res);
+
 		return created;
 	}
 
@@ -93,10 +96,10 @@ export class UserService extends DataBase {
 	 * @method
 	 * @name update
 	 * @memberof UserService
-	 * @param {Pessoa} user
+	 * @param {IPessoa} user
 	 * @returns {Promise<PostgrestResponseFailure | PostgrestResponseSuccess<null>>}
 	 */
-	async update(user: Pessoa) {
+	async update(user: IPessoa) {
 		const updated = await this.supabase
 			.from(tableName)
 			.update(user)

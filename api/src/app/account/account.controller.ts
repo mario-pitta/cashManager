@@ -6,10 +6,12 @@ import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common'
 import { AccountService } from './account.service';
 import { Conta } from 'src/core/models/Conta';
 
-@Controller('contas')
+@Controller('account')
 export class AccountController {
 
-    constructor(private readonly accountService: AccountService){}
+    constructor(private readonly accountService: AccountService){
+        return this
+    }
 
     @Post()
     create(@Body() body: Conta){
@@ -37,6 +39,7 @@ export class AccountController {
 
     @Get('amount/user/:id')
     getAmountByUserId(@Param('id') id: number){
+        console.log("getting ammout from user, ", id)
         return this.accountService.getAmountByUserId(id)
     }
 
