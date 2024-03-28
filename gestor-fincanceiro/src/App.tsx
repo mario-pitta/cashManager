@@ -1,17 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Layout } from './app/components/layout';
+import React from "react";
+// import logo from './logo.svg';
+
+import "./App.css";
+import Router from "./app/router/router";
 
 function App() {
   return (
-    
-    <div className="App">
-      
+    <div data-testid="App" id="App" className="App">
+      {/* TODO build router guard about auth login; */}
 
-      <Layout />
-    </div>
     
+      <Router />      
+    </div>
   );
 }
 
