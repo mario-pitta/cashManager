@@ -1,18 +1,24 @@
-import React from 'react';
+import React from "react";
 
-import './layout.css';
-import { Content, Sidebar, Header, Footer } from './components';
+import "./layout.css";
+import { Content, Sidebar, Header, Footer } from "./components";
 
 export interface layoutProps {
   prop?: string;
+  children?: Element;
 }
 
-export function Layout({prop = 'default value'}: layoutProps) {
-  return <div className='layout'>
-    <Header />
-    <Sidebar />
-    <Content />
-    <Footer />
-  
-  </div>;
+export function Layout({ prop = "layout rendering" }: layoutProps) {
+  console.log(prop)
+  return (
+    <div className="layout">
+      <Header />
+      <div className="only-md">
+        <Sidebar />
+      </div>
+      <Content />
+
+      <Footer />
+    </div>
+  );
 }

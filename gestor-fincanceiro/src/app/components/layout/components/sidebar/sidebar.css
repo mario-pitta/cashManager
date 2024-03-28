@@ -1,7 +1,6 @@
 .sidebar {
   position: fixed;
-  top: 2rem;
-  z-index: -1;
+  top: 3rem;
   left: 0;
   height: 100vh;
   width: 300px;
@@ -9,7 +8,6 @@
   align-items: center;
   gap: 239px;
   padding: 23px 11px;
-  /* outline: solid 1px #ffffff1a; */
   outline-offset: -1px;
   border-radius: 2px;
   background-image: linear-gradient(180deg, #404040ff 0%, #a6a6a6ff 100%);
@@ -25,6 +23,18 @@
   position: relative;
   justify-content: center;
   width: 100%;
+  color: aliceblue;
+
+}
+
+.userName {
+  height: 35px;
+  align-items: center;
+  
+
+
+
+  font-size: 1rem;
 }
 
 .avatarContainer {
@@ -34,10 +44,6 @@
 }
 
 .avatar {
-  /* position: absolute;
-  left: 0;
-  right: 0;
-  top: 0; */
   bottom: 23.1441%;
   width: 189px;
   height: 176px;
@@ -50,6 +56,7 @@
 
 .link-list ul {
   list-style: none;
+  padding: 0;
 
   li {
     color: aliceblue;
@@ -61,6 +68,8 @@
 
 
 
+    font-size: 1.9rem;
+    font-weight: bold;
     border-top-left-radius: 5%;
     border-top-right-radius: 5%;
     border-bottom-left-radius: 5%;
@@ -69,6 +78,8 @@
 
   :hover {
     background: rgba(248, 248, 248, 0);
-    
+    font-size: 2.5rem;
+    font-weight: bolder;
+
   }
 }

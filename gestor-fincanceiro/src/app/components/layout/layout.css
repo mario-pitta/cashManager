@@ -1,7 +1,16 @@
 .layout {
-  width: 99%;
-  height: 100%;   
+    height: 100%;
+}
 
-  
+.footer {
+    display: none;
+}
 
+@media (max-width: 991px) {
+    .only-md {
+        display: none;
+    }
+    .footer {
+        display: block;
+    }
 }

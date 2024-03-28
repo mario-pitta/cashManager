@@ -1,38 +1,34 @@
-import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import  './header.css';
+import React, { useState } from "react";
+import Navbar from "react-bootstrap/Navbar";
+import "./header.css";
+import { Sidebar } from "../sidebar";
+import { FaPowerOff } from "react-icons/fa";
+import AuthService from "../../../../core/services/auth.service";
+const auth = new AuthService()
+
 
 export interface headerProps {
   prop?: string;
 }
 
-export function Header({prop = 'default value'}: headerProps) {
-  
-  
-    return (
-      <Navbar expand="lg" className="header">
-        {/* <Container className='d-flex'> */}
-          <Navbar.Brand href="#home">Cash Manager</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          {/* <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item> 
-              </NavDropdown>
-            </Nav> 
-          </Navbar.Collapse>*/}
-        {/* </Container> */}
-      </Navbar>
-    );
+export function Header({ prop = "default value" }: headerProps) {
+
+  console.log("redering header")
+  const [showSideBar, setShowSideBar] = useState(false);
+  function toggleSideBar(show: boolean) {
+    setShowSideBar(show);
   }
-  
+
+  function handleLogoff(): void {
+    auth.logout()
+  }
+
+  return (
+    <Navbar expand="lg" className="header">
+      <Navbar.Brand href="/" className="appTitle">Cash Manager</Navbar.Brand>
+      {/* <Navbar.Toggle onClick={() => toggleSideBar(!showSideBar)} />
+      {showSideBar ? <Sidebar /> : null} */}
+      <FaPowerOff  className="shutdown-btn" size={24} color="white" onClick={() => handleLogoff()}></FaPowerOff>
+    </Navbar>
+  );
+}

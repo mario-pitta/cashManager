@@ -2,55 +2,55 @@ import React, { useState } from "react";
 import "./sidebar.css";
 
 import Pessoa from "../../../../core/models/Pessoa";
-import Link from "../../../../core/models/Link";
-
+import { Link, ILink } from "../../../../core/models/Link";
+import { Anchor } from "../../../shared/anchor";
+import AuthService from "../../../../core/services/auth.service";
+const auth =  new AuthService()
 export interface sidebarProps {
   prop?: Pessoa;
 }
 
-export function Sidebar({
-  prop = new Pessoa(
-    1,
-    "Mario Pitta",
-    "03798865531",
-    "mvk.pitta@gmail.com",
-    "teste321",
-    120000
-  ),
-}: sidebarProps) {
-  // const [user, setUser] = useState(prop);
+export function Sidebar() {
+  const [user, setUser] = useState(auth.getUser());
+
 
   const checkUser = () => {
+    setUser(auth.getUser())
     const avatar = document.getElementById("avatar");
-    console.log(avatar, prop.foto);
-    if (prop.foto && avatar) avatar.style.backgroundImage = prop.foto;
+    // console.log(avatar, user.foto);
+    if (user.foto && avatar) avatar.style.backgroundImage = user.foto;
   };
 
-  const links: Link[] = [
-    new Link("./dashboard", "Dashboard"),
-    new Link("./extratos", "Extratos"),
-    new Link("./contas", "Contas"),
-    new Link("./categorias", "Categorias"),
-    new Link("./calendário", "Calendário"),
+  const links: ILink[] = [
+    new Link("./", "Dashboard", ""),
+    new Link("./extracts", "Extratos", ""),
+    new Link("./accounts", "Contas", ""),
+    new Link("./labels", "Categorias", ""),
+    new Link("./calendary", "Calendário", ""),
   ];
 
+
+  const logout= () => {
+
+    auth.logout()
+ 
+  }
+
+  // checkUser();
   return (
     <div className="sidebar">
       <div className="userInfo align-items-center ">
         <div className="avatarContainer">
           <div className="avatar" id="avatar" onEnded={() => checkUser()}></div>
         </div>
-        <div className="joeDude">{`${prop.nome}`} </div>
+        <span>Hello, <span className="userName">{`${user?.nome}`} </span></span>
       </div>
       <div className="link-list">
         <ul>
-          {links.map((link) => {
-            return (
-              <a href={link.path}>
-                <li>{link.label}</li>
-              </a>
-            );
+          {links.map((l: ILink) => {
+            return <Anchor prop={{...l}}  />;
           })}
+          <li className="clickable" onClick={() => logout()}>Logout</li>
         </ul>
       </div>
     </div>
