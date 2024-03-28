@@ -1,0 +1,25 @@
+tr {
+    
+    align-items: center;
+}
+
+.btnRounded {
+    border-radius: 100% !important;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+
+.clickable{
+    cursor: pointer;
+}
