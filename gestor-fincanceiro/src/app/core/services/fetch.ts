@@ -17,5 +17,8 @@ export async function api(url: string, method: string, body?: any) {
   return await fetch(API_URL + url, options)
     .then((res) => res.json())
     .then((json) =>  json)
-    // .catch((err) =>  err);
+    .catch((err) =>  {
+      console.error(err);
+      return err
+    });
 }
